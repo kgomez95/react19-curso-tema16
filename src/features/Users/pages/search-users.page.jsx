@@ -23,10 +23,7 @@ const SearchUsers = () => {
             { key: ["email"], name: "Correo electrónico" },
             { key: ["address", "street"], name: "Dirección" },
         ],
-        filtersInfo: [
-            { key: "name", name: "Nombre", filterType: "simple", fieldType: "text" },
-            // { key: "price", name: "Precio", filterType: "range", fieldType: "number" }
-        ],
+        filterSimple: { key: "name", name: "Nombre" },
         topActions: [
             { name: "Crear", icon: "", path: "/users/create" }
         ],

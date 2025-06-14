@@ -32,6 +32,25 @@ const DarkMuiTheme = createTheme({
             },
         },
     },
+    components: {
+        MuiTablePagination: {
+            styleOverrides: {
+                root: {
+                    color: "#fafafa",
+                },
+                text: {
+                    color: "#fafafa",
+                },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    color: "#fafafa"
+                }
+            },
+        },
+    },
 });
 
 export default DarkMuiTheme;

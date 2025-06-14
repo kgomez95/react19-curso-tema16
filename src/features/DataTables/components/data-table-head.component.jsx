@@ -1,7 +1,8 @@
 import { TableHead, TableRow } from "@mui/material";
 import StyledTableCell from "../mui-styles/table-cell.styled";
+import { memo } from "react";
 
-const DataTableHead = ({ headers = [""] }) => {
+const DataTableHead = memo(({ headers = [""] }) => {
     return (
         <>
             <TableHead>
@@ -24,6 +25,6 @@ const DataTableHead = ({ headers = [""] }) => {
             </TableHead>
         </>
     );
-};
+});
 
 export default DataTableHead;

@@ -32,6 +32,25 @@ const BlueMuiTheme = createTheme({
             },
         },
     },
+    components: {
+        MuiTablePagination: {
+            styleOverrides: {
+                root: {
+                    color: "#e3f2fd",
+                },
+                text: {
+                    color: "#e3f2fd",
+                },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    color: "#e3f2fd"
+                },
+            },
+        },
+    },
 });
 
 export default BlueMuiTheme;
