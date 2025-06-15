@@ -29,7 +29,7 @@ const SearchUsers = () => {
         ],
         rowActions: [
             { name: "Ver", icon: <ArrowOutwardIcon />, path: "/users/details/{0}", parameters: ["id"] },
-            { name: "Actualizar", icon: <EditIcon />, path: "/users/update/{0}", parameters: ["id"] },
+            { name: "Editar", icon: <EditIcon />, path: "/users/update/{0}", parameters: ["id"] },
             { name: "Eliminar", icon: <DeleteForeverIcon />, onClick: () => console.log("TODO: Poner algún popup o algo para mostrar que se ha eliminado.") }
         ]
     };
