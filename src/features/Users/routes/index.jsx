@@ -1,5 +1,6 @@
 import Details from "../pages/details.page";
 import SearchUsers from "../pages/search-users.page";
+import Update from "../pages/update.page";
 
 const routes = [
     {
@@ -9,6 +10,10 @@ const routes = [
     {
         path: "details/:idUsuario",
         element: <Details />,
+    },
+    {
+        path: "update/:idUsuario",
+        element: <Update />,
     }
 ];
 
