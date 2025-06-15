@@ -1,21 +1,20 @@
-import { Box, Divider, Grid, Paper, styled } from "@mui/material";
+import { Box, Divider, Grid } from "@mui/material";
 import { memo } from "react";
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    color: (theme.vars ?? theme).palette.text.primary,
-    ...theme.applyStyles("dark", {
-        backgroundColor: "#1A2027",
-    }),
-}));
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import Item from "../../utils/mui-styles/item.styled";
 
 const ItemGridMap = memo(({ title, coordinates, size }) => {
+    if (!coordinates || !coordinates.lat || !coordinates.lng) {
+        return <></>;
+    }
+
+    const location = [coordinates.lat, coordinates.lng];
+
     return (
         <>
             <Grid size={size}>
-                <Item style={{ height: "100%" }}>
+                <Item style={{ height: "400px" }}>
                     <Box
                         sx={{
                             textTransform: "uppercase",
@@ -28,7 +27,11 @@ const ItemGridMap = memo(({ title, coordinates, size }) => {
                         {title}
                     </Box>
                     <Divider />
-                    <Grid container spacing={1}>
+                    <Grid
+                        container
+                        spacing={1}
+                        style={{ height: "90%", width: "100%", paddingTop: "5px" }}
+                    >
                         <Grid
                             size={{
                                 xs: 12,
@@ -36,7 +39,22 @@ const ItemGridMap = memo(({ title, coordinates, size }) => {
                                 lg: 12,
                             }}
                         >
-                            <Box component="ul" sx={{ pl: 2 }}></Box>
+                            <MapContainer
+                                center={location}
+                                zoom={2}
+                                style={{ height: "100%" }}
+                            >
+                                <TileLayer
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                />
+                                <Marker position={location}>
+                                    <Popup>
+                                        Coordenadas: {location[0]},{" "}
+                                        {location[1]}
+                                    </Popup>
+                                </Marker>
+                            </MapContainer>
                         </Grid>
                     </Grid>
                 </Item>

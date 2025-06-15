@@ -61,8 +61,8 @@ const transformCoordinateData = (user) => {
         return userModel.address.geo;
 
     return {
-        lat: userModel.address.geo.lat,
-        lng: userModel.address.geo.lng,
+        lat: user.address.geo.lat,
+        lng: user.address.geo.lng,
     };
 };
 

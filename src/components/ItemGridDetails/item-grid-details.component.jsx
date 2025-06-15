@@ -1,23 +1,6 @@
-import {
-    Box,
-    Divider,
-    Grid,
-    Paper,
-    Skeleton,
-    styled,
-    Typography,
-} from "@mui/material";
+import { Box, Divider, Grid, Skeleton, Typography } from "@mui/material";
 import { memo } from "react";
-
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    color: (theme.vars ?? theme).palette.text.primary,
-    ...theme.applyStyles("dark", {
-        backgroundColor: "#1A2027",
-    }),
-}));
+import Item from "../../utils/mui-styles/item.styled";
 
 const ItemGridDetails = memo(({ title, values, size }) => {
     const totalValues = values ? values.length : 1;

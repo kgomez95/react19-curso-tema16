@@ -47,7 +47,7 @@ const Details = () => {
                 <ItemGridDetails title="Datos básicos" values={basicData} size={{ xs: 12, md: 12, lg: 7 }} />
                 <ItemGridDetails title="Datos de la compañía" values={companyData} size={{ xs: 12, md: 12, lg: 5 }} />
                 <ItemGridDetails title="Dirección" values={addressData} size={{ xs: 12, md: 12, lg: 7 }} />
-                <ItemGridMap title="Coordenadas" values={coordinatesData} size={{ xs: 12, md: 12, lg: 5 }} />
+                <ItemGridMap title="Coordenadas" coordinates={coordinatesData} size={{ xs: 12, md: 12, lg: 5 }} />
             </Grid>
         </div>
     );
