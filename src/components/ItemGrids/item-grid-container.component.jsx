@@ -3,7 +3,7 @@ import Item from "../../utils/mui-styles/item.styled";
 
 const ItemGridContainer = ({ title, size, children }) => {
     return (
-        <Grid size={size}>
+        <Grid size={size} spacing={2}>
             <Item style={{ height: "100%" }}>
                 {title && (
                     <>
@@ -18,10 +18,10 @@ const ItemGridContainer = ({ title, size, children }) => {
                         >
                             {title}
                         </Box>
-                        <Divider />
+                        <Divider style={{ marginBottom: "15px" }} />
                     </>
                 )}
-
+                
                 {children}
             </Item>
         </Grid>
