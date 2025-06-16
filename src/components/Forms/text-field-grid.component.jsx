@@ -1,10 +1,11 @@
 import { Grid, TextField } from "@mui/material";
+import { memo } from "react";
 
-const TextFieldGrid = ({ theme, label, required, spacing = 2, size = 12, name, value, onChange }) => {
+const TextFieldGrid = memo(({ theme, label, required, spacing = 2, size = 12, name, value, onChange }) => {
 
     return (
         <>
-            <Grid container spacing={spacing} size={size}>
+            <Grid container spacing={spacing} size={{ xs: 12, md: size }}>
                 <TextField
                     label={label}
                     variant="outlined"
@@ -22,6 +23,6 @@ const TextFieldGrid = ({ theme, label, required, spacing = 2, size = 12, name, v
             </Grid>
         </>
     );
-};
+});
 
 export default TextFieldGrid;

@@ -8,6 +8,12 @@ import ItemGridContainer from "../../../components/ItemGrids/item-grid-container
 import TextFieldGrid from "../../../components/Forms/text-field-grid.component";
 import userModel from "../models/user.model";
 import {
+    changeAddressCity,
+    changeAddressGeoLat,
+    changeAddressGeoLng,
+    changeAddressStreet,
+    changeAddressSuite,
+    changeAddressZipcode,
     changeCompanyCatchPhrase,
     changeCompanyName,
     changeEmail,
@@ -43,8 +49,11 @@ const Update = () => {
                 TODO: En la parte superior hay que mostrar los mensajes de
                 validación.
             </p>
+            <p>
+                TODO: Añadir la etiqueta form y las validaciones de los campos.
+            </p>
             <Grid container spacing={2}>
-                <Grid container spacing={2} size={7}>
+                <Grid container spacing={2} size={{ xs: 12, md: 12, lg: 7 }}>
                     <ItemGridContainer title="Datos básicos" size={12}>
                         <Grid container spacing={2}>
                             <TextFieldGrid
@@ -118,32 +127,88 @@ const Update = () => {
                         </Grid>
                     </ItemGridContainer>
                 </Grid>
-                <Grid container spacing={2} size={5}>
+                <Grid container spacing={2} size={{ xs: 12, md: 12, lg: 5 }}>
                     <ItemGridContainer title="Dirección" size={12}>
-                        <h1>TODO: Añadir los campos de la dirección.</h1>
+                        <Grid container spacing={2}>
+                            <TextFieldGrid
+                                size={12}
+                                label="Calle"
+                                required={true}
+                                theme={theme}
+                                name="address.street"
+                                value={user.address.street}
+                                onChange={changeAddressStreet(setUser)}
+                            />
+                            <TextFieldGrid
+                                size={12}
+                                label="Suite"
+                                required={false}
+                                theme={theme}
+                                name="address.suite"
+                                value={user.address.suite}
+                                onChange={changeAddressSuite(setUser)}
+                            />
+                            <TextFieldGrid
+                                size={12}
+                                label="Ciudad"
+                                required={true}
+                                theme={theme}
+                                name="address.city"
+                                value={user.address.city}
+                                onChange={changeAddressCity(setUser)}
+                            />
+                            <TextFieldGrid
+                                size={12}
+                                label="Código postal"
+                                required={true}
+                                theme={theme}
+                                name="address.zipcode"
+                                value={user.address.zipcode}
+                                onChange={changeAddressZipcode(setUser)}
+                            />
+                            <TextFieldGrid
+                                size={6}
+                                label="Latitud"
+                                required={false}
+                                theme={theme}
+                                name="address.geo.lat"
+                                value={user.address.geo.lat}
+                                onChange={changeAddressGeoLat(setUser)}
+                            />
+                            <TextFieldGrid
+                                size={6}
+                                label="Longitud"
+                                required={false}
+                                theme={theme}
+                                name="address.geo.lng"
+                                value={user.address.geo.lng}
+                                onChange={changeAddressGeoLng(setUser)}
+                            />
+                        </Grid>
                     </ItemGridContainer>
                 </Grid>
             </Grid>
-            <div
-                style={{
-                    paddingTop: "20px",
-                    textAlign: "right",
-                    display: "flex",
-                    justifyContent: "end",
-                }}
-            >
-                <Button variant="outlined" color="error">
-                    Cancelar
-                </Button>
+            <Grid container spacing={1} paddingTop={2} justifyContent="end">
+                <Grid size={{ xs: 12, md: 2, lg: 1 }}>
+                    <Button
+                        variant="outlined"
+                        color="error"
+                        style={{ width: "100%" }}
+                    >
+                        Cancelar
+                    </Button>
+                </Grid>
 
-                <Button
-                    variant="contained"
-                    color="success"
-                    style={{ marginLeft: "10px" }}
-                >
-                    Aceptar
-                </Button>
-            </div>
+                <Grid size={{ xs: 12, md: 2, lg: 1 }}>
+                    <Button
+                        variant="contained"
+                        color="success"
+                        style={{ width: "100%" }}
+                    >
+                        Aceptar
+                    </Button>
+                </Grid>
+            </Grid>
         </>
     );
 };

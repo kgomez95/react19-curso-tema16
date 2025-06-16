@@ -67,6 +67,84 @@ const changeCompanyCatchPhrase = (setUser) => {
     };
 };
 
+const changeAddressStreet = (setUser) => {
+    return (event) => {
+        setUser((x) => ({
+            ...x,
+            address: {
+                ...x.address,
+                street: event.target.value,
+            },
+        }));
+    };
+};
+
+const changeAddressSuite = (setUser) => {
+    return (event) => {
+        setUser((x) => ({
+            ...x,
+            address: {
+                ...x.address,
+                suite: event.target.value,
+            },
+        }));
+    };
+};
+
+const changeAddressCity = (setUser) => {
+    return (event) => {
+        setUser((x) => ({
+            ...x,
+            address: {
+                ...x.address,
+                city: event.target.value,
+            },
+        }));
+    };
+};
+
+const changeAddressZipcode = (setUser) => {
+    return (event) => {
+        setUser((x) => ({
+            ...x,
+            address: {
+                ...x.address,
+                zipcode: event.target.value,
+            },
+        }));
+    };
+};
+
+const changeAddressGeoLat = (setUser) => {
+    return (event) => {
+        setUser((x) => ({
+            ...x,
+            address: {
+                ...x.address,
+                geo: {
+                    ...x.address.geo,
+                    lat: event.target.value,
+                },
+            },
+        }));
+    };
+};
+
+const changeAddressGeoLng = (setUser) => {
+    return (event) => {
+        setUser((x) => ({
+            ...x,
+            address: {
+                ...x.address,
+                geo: {
+                    ...x.address.geo,
+                    lng: event.target.value,
+                },
+            },
+        }));
+    };
+};
+
 export {
     changeName,
     changeUsername,
@@ -75,4 +153,10 @@ export {
     changeWebsite,
     changeCompanyName,
     changeCompanyCatchPhrase,
+    changeAddressStreet,
+    changeAddressSuite,
+    changeAddressCity,
+    changeAddressZipcode,
+    changeAddressGeoLat,
+    changeAddressGeoLng,
 };
