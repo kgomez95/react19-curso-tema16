@@ -1,3 +1,4 @@
+import { BorderColor } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 const DarkMuiTheme = createTheme({
@@ -46,8 +47,32 @@ const DarkMuiTheme = createTheme({
         MuiMenuItem: {
             styleOverrides: {
                 root: {
-                    color: "#fafafa"
-                }
+                    color: "#fafafa",
+                },
+            },
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    "&.MuiButton-root.MuiButton-outlinedError": {
+                        backgroundColor: "#eeeeee",
+                        color: "#424242",
+                        borderColor: "#9e9e9e",
+                        "&:hover": {
+                            backgroundColor: "#e0e0e0",
+                            color: "#212121"
+                        },
+                    },
+                    "&.MuiButton-root.MuiButton-containedSuccess": {
+                        backgroundColor: "#424242",
+                        color: "#f5f5f5",
+                        borderColor: "#212121",
+                        "&:hover": {
+                            backgroundColor: "#212121",
+                            color: "#fafafa"
+                        },
+                    },
+                },
             },
         },
     },

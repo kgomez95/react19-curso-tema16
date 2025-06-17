@@ -50,6 +50,30 @@ const BlueMuiTheme = createTheme({
                 },
             },
         },
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    "&.MuiButton-root.MuiButton-outlinedError": {
+                        backgroundColor: "#e3f2fd",
+                        color: "#2979ff",
+                        borderColor: "#2196f3",
+                        "&:hover": {
+                            backgroundColor: "#64b5f6",
+                            color: "#0d47a1"
+                        },
+                    },
+                    "&.MuiButton-root.MuiButton-containedSuccess": {
+                        backgroundColor: "#2979ff",
+                        color: "#e3f2fd",
+                        borderColor: "#0d47a1",
+                        "&:hover": {
+                            backgroundColor: "#0d47a1",
+                            color: "#ffffff"
+                        },
+                    },
+                },
+            },
+        },
     },
 });
 

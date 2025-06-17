@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setTitle } from "../../../utils/slices/title.slice";
 import { fetchUser } from "../services/users.service";
-import { Button, Grid, useTheme } from "@mui/material";
+import { Alert, Button, Grid, useTheme } from "@mui/material";
 import ItemGridContainer from "../../../components/ItemGrids/item-grid-container.component";
 import TextFieldGrid from "../../../components/Forms/text-field-grid.component";
 import userModel from "../models/user.model";
@@ -22,12 +22,16 @@ import {
     changeUsername,
     changeWebsite,
 } from "../services/update-user.service";
+import CancelPopup from "../../../components/Popups/cancel-popup.component";
+import CheckIcon from "@mui/icons-material/Check";
 
 const Update = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const { idUsuario } = useParams();
     const [user, setUser] = useState(userModel);
+    const [showCancelPopup, setShowCancelPopup] = useState(false);
+    const [showAcceptMessage, setShowAcceptMessage] = useState(false);
 
     const getUser = async () => {
         // Obtenemos los datos del usuario.
@@ -43,15 +47,41 @@ const Update = () => {
         getUser();
     }, []);
 
+    const openCancelPopup = () => {
+        setShowCancelPopup(true);
+    };
+
+    const closeCancelPopup = () => {
+        setShowCancelPopup(false);
+    };
+
+    const openAcceptMessage = () => {
+        setShowAcceptMessage(true);
+    };
+
     return (
         <>
             <p>
-                TODO: En la parte superior hay que mostrar los mensajes de
-                validación.
+                TODO: Al pulsar "Aceptar" realizar validación se campos obligatorios. Mostrar mensaje verde cuando esté todo bien, sino mostrar mensaje de error.
             </p>
-            <p>
-                TODO: Añadir la etiqueta form y las validaciones de los campos.
-            </p>
+            {showAcceptMessage && (
+                <Alert
+                    icon={<CheckIcon fontSize="inherit" />}
+                    severity="success"
+                    style={{ marginBottom: "10px" }}
+                >
+                    Simulación realizada con éxito.
+                </Alert>
+            )}
+
+            <CancelPopup
+                open={showCancelPopup}
+                handleClose={closeCancelPopup}
+                title="¿Desea cancelar la operación?"
+                message="Todos los cambios realizados se perderán."
+                path="/users"
+            />
+
             <Grid container spacing={2}>
                 <Grid container spacing={2} size={{ xs: 12, md: 12, lg: 7 }}>
                     <ItemGridContainer title="Datos básicos" size={12}>
@@ -194,6 +224,7 @@ const Update = () => {
                         variant="outlined"
                         color="error"
                         style={{ width: "100%" }}
+                        onClick={openCancelPopup}
                     >
                         Cancelar
                     </Button>
@@ -204,6 +235,7 @@ const Update = () => {
                         variant="contained"
                         color="success"
                         style={{ width: "100%" }}
+                        onClick={openAcceptMessage}
                     >
                         Aceptar
                     </Button>
