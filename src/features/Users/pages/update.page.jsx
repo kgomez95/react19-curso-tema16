@@ -21,9 +21,9 @@ import {
     changePhone,
     changeUsername,
     changeWebsite,
+    validateUser,
 } from "../services/update-user.service";
 import CancelPopup from "../../../components/Popups/cancel-popup.component";
-import CheckIcon from "@mui/icons-material/Check";
 
 const Update = () => {
     const theme = useTheme();
@@ -31,7 +31,8 @@ const Update = () => {
     const { idUsuario } = useParams();
     const [user, setUser] = useState(userModel);
     const [showCancelPopup, setShowCancelPopup] = useState(false);
-    const [showAcceptMessage, setShowAcceptMessage] = useState(false);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [errorMessages, setErrorMessages] = useState([]);
 
     const getUser = async () => {
         // Obtenemos los datos del usuario.
@@ -55,24 +56,39 @@ const Update = () => {
         setShowCancelPopup(false);
     };
 
-    const openAcceptMessage = () => {
-        setShowAcceptMessage(true);
+    const sendForm = () => {
+        const errors = validateUser(user);
+
+        if (errors && errors.length > 0) {
+            setShowSuccessMessage(false);
+            setErrorMessages(errors);
+        } else {
+            setErrorMessages([]);
+            setShowSuccessMessage(true);
+        }
     };
 
     return (
         <>
-            <p>
-                TODO: Al pulsar "Aceptar" realizar validación se campos obligatorios. Mostrar mensaje verde cuando esté todo bien, sino mostrar mensaje de error.
-            </p>
-            {showAcceptMessage && (
+            {showSuccessMessage && (
                 <Alert
-                    icon={<CheckIcon fontSize="inherit" />}
                     severity="success"
                     style={{ marginBottom: "10px" }}
                 >
                     Simulación realizada con éxito.
                 </Alert>
             )}
+
+            {errorMessages.length > 0 &&
+                errorMessages.map((error, index) => (
+                    <Alert
+                        key={index}
+                        severity="error"
+                        style={{ marginBottom: "10px" }}
+                    >
+                        {error}
+                    </Alert>
+                ))}
 
             <CancelPopup
                 open={showCancelPopup}
@@ -235,7 +251,7 @@ const Update = () => {
                         variant="contained"
                         color="success"
                         style={{ width: "100%" }}
-                        onClick={openAcceptMessage}
+                        onClick={sendForm}
                     >
                         Aceptar
                     </Button>

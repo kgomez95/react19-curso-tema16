@@ -145,6 +145,25 @@ const changeAddressGeoLng = (setUser) => {
     };
 };
 
+const validateUser = (user) => {
+    let errors = [];
+
+    if (!user || !user.company || !user.address) {
+        errors.push("Debes proporcionar los datos completos de un usuario.");
+        return errors;
+    }
+
+    if (!user.name) errors.push(`El campo "Nombre" es obligatorio.`);
+    if (!user.username) errors.push(`El campo "Nombre de usuario" es obligatorio.`);
+    if (!user.email) errors.push(`El campo "Correo electrónico" es obligatorio.`);
+    if (!user.company.name) errors.push(`El campo "Nombre" de la compañía es obligatorio.`);
+    if (!user.address.street) errors.push(`El campo "Calle" de la dirección es obligatorio.`);
+    if (!user.address.city) errors.push(`El campo "Ciudad" de la dirección es obligatorio.`);
+    if (!user.address.zipcode) errors.push(`El campo "Código postal" de la dirección es obligatorio.`);
+
+    return errors;
+};
+
 export {
     changeName,
     changeUsername,
@@ -159,4 +178,5 @@ export {
     changeAddressZipcode,
     changeAddressGeoLat,
     changeAddressGeoLng,
+    validateUser,
 };

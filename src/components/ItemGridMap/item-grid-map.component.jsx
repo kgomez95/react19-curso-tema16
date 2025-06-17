@@ -3,6 +3,18 @@ import { memo } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Item from "../../utils/mui-styles/item.styled";
+import iconMarker from "leaflet/dist/images/marker-icon.png";
+import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import L from "leaflet";
+
+const icon = L.icon({
+    iconRetinaUrl: iconRetina,
+    iconUrl: iconMarker,
+    shadowUrl: iconShadow,
+    iconSize: [23, 35],
+    shadowSize: [0, 0],
+});
 
 const ItemGridMap = memo(({ title, coordinates, size }) => {
     if (!coordinates || !coordinates.lat || !coordinates.lng) {
@@ -30,7 +42,11 @@ const ItemGridMap = memo(({ title, coordinates, size }) => {
                     <Grid
                         container
                         spacing={1}
-                        style={{ height: "90%", width: "100%", paddingTop: "5px" }}
+                        style={{
+                            height: "90%",
+                            width: "100%",
+                            paddingTop: "5px",
+                        }}
                     >
                         <Grid
                             size={{
@@ -48,7 +64,7 @@ const ItemGridMap = memo(({ title, coordinates, size }) => {
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 />
-                                <Marker position={location}>
+                                <Marker icon={icon} position={location}>
                                     <Popup>
                                         Coordenadas: {location[0]},{" "}
                                         {location[1]}
