@@ -2,7 +2,7 @@ import { Box, Divider, Grid, Skeleton, Typography } from "@mui/material";
 import { memo } from "react";
 import Item from "../../utils/mui-styles/item.styled";
 
-const ItemGridDetails = memo(({ title, values, size }) => {
+const ItemGridDetails = memo(({ title, values, size, children }) => {
     const totalValues = values ? values.length : 1;
 
     return (
@@ -36,9 +36,15 @@ const ItemGridDetails = memo(({ title, values, size }) => {
                                         {value.map((itemValue, indexValue) => (
                                             <li key={indexValue}>
                                                 <div
-                                                    style={{ display: "flex" }}
+                                                    style={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                    }}
                                                 >
-                                                    <b>{itemValue.name}:</b>
+                                                    {itemValue.name && (
+                                                        <b>{itemValue.name}:</b>
+                                                    )}
+
                                                     <Typography
                                                         variant="span"
                                                         style={{
@@ -60,6 +66,7 @@ const ItemGridDetails = memo(({ title, values, size }) => {
                                     </Box>
                                 </Grid>
                             ))}
+                        {!values && children}
                     </Grid>
                 </Item>
             </Grid>

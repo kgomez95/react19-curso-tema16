@@ -12,11 +12,14 @@ import { ListItemButton, ListItemIcon } from "@mui/material";
 const Topbar = ({ handleDrawerOpen, open }) => {
     const title = useSelector((state) => state.title.value);
     const navigate = useNavigate();
+    const showArrowNavigation = useSelector(
+        (state) => state.theme.showArrowNavigation
+    );
 
     return (
         <>
             <AppBar position="fixed" open={open}>
-                <Toolbar className={`${open && "kgc-pl-0"}`} >
+                <Toolbar className={`${open && "kgc-pl-0"}`}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -31,19 +34,23 @@ const Topbar = ({ handleDrawerOpen, open }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <ListItemIcon>
-                        <ListItemButton onClick={() => navigate(-1)}>
-                            <ArrowCircleLeftIcon
-                                style={{ fontSize: "xx-large" }}
-                            />
-                        </ListItemButton>
-                        <ListItemButton onClick={() => navigate(1)}>
-                            <ArrowCircleRightIcon
-                                style={{ fontSize: "xx-large" }}
-                            />
-                        </ListItemButton>
-                    </ListItemIcon>
-                    <Typography variant="h6" noWrap component="div">
+
+                    {showArrowNavigation && (
+                        <ListItemIcon>
+                            <ListItemButton onClick={() => navigate(-1)}>
+                                <ArrowCircleLeftIcon
+                                    style={{ fontSize: "xx-large" }}
+                                />
+                            </ListItemButton>
+                            <ListItemButton onClick={() => navigate(1)}>
+                                <ArrowCircleRightIcon
+                                    style={{ fontSize: "xx-large" }}
+                                />
+                            </ListItemButton>
+                        </ListItemIcon>
+                    )}
+
+                    <Typography variant="h6" noWrap component="div" style={{paddingLeft: showArrowNavigation ? "auto" : "15px"}}>
                         {title}
                     </Typography>
                 </Toolbar>

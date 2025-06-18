@@ -1,8 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setTitle } from "../../../utils/slices/title.slice";
 import { useEffect, useState } from "react";
-import { changeTheme } from "../../../utils/slices/theme.slice";
-import { Divider, FormControlLabel, Switch } from "@mui/material";
+import {
+    changeArrowNavigation,
+    changeTheme,
+} from "../../../utils/slices/theme.slice";
+import { FormControlLabel, Grid, Switch, Typography } from "@mui/material";
+import ItemGridDetails from "../../../components/ItemGridDetails/item-grid-details.component";
 
 const ProfilePage = () => {
     const dispatch = useDispatch();
@@ -10,10 +14,18 @@ const ProfilePage = () => {
     const [currentTheme, setCurrentTheme] = useState(
         useSelector((state) => state.theme.selected === 0)
     );
+    const [arrowNavigation, setArrowNavigation] = useState(
+        useSelector((state) => state.theme.showArrowNavigation)
+    );
 
     const handleTheme = () => {
         setCurrentTheme((x) => !x);
         dispatch(changeTheme());
+    };
+
+    const handleArrowNavigation = () => {
+        setArrowNavigation((x) => !x);
+        dispatch(changeArrowNavigation());
     };
 
     useEffect(() => {
@@ -21,31 +33,100 @@ const ProfilePage = () => {
         dispatch(setTitle("Perfil de configuración"));
     }, []);
 
+    // Datos del usuario.
+    const basicUserData = [
+        [
+            { name: "Nombre", value: "Anónimo" },
+            { name: "Apellidos", value: "Anónimo1 Anónimo2" },
+            { name: "Género", value: "Cosa" },
+            { name: "Edad", value: Math.floor(Math.random() * 100) + 18 },
+        ],
+        [
+            { name: "Correo electrónico", value: "anonimo@test.es" },
+            { name: "NIF", value: "XXXXXXXX-X" },
+            { name: "Teléfono", value: "9XXXXXXXX" },
+            { name: "Teléfono móvil", value: "6XXXXXXXX" },
+        ],
+    ];
+
+    // Datos de la configuración.
+    const configData = [
+        [
+            {
+                name: "Paleta de colores",
+                value: (
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={currentTheme}
+                                onChange={handleTheme}
+                                name="theme"
+                            />
+                        }
+                        label={currentTheme ? "Oscuro" : "Azul"}
+                    />
+                ),
+            },
+            {
+                name: "Flechas de navegación",
+                value: (
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={arrowNavigation}
+                                onChange={handleArrowNavigation}
+                                name="theme"
+                            />
+                        }
+                        label={arrowNavigation ? "Visibles" : "No visibles"}
+                    />
+                ),
+            },
+        ],
+    ];
+
+    const infoData = [
+        [
+            { name: "", value: (
+                <span>Esta es una página web de prueba, desarrollada con la finalidad de poner en práctica gran parte de lo aprendido en el curso <b>React 19</b> (<a href="https://imaginaformacion.com/" target="_blank">Imagina Formación</a>).</span>
+            ) },
+            { name: "", value: (
+                <span>Se ha utilizado la fake API <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a> para poder obtener datos ficticios de cara a visualizarlo en las diferentes pantallas de la aplicación.</span>
+            ) },
+            { name: "", value: (
+                <span>Se ha utilizado <a href="https://mui.com/material-ui/" target="_blank">Material UI</a> para el diseño de la aplicación.</span>
+            ) },
+            { name: "", value: (
+                <span>Se ha utilizado <a href="https://react-leaflet.js.org/" target="_blank">React Leaflet</a> para el uso del mapa con coordenadas en la pantalla del detalle de usuario.</span>
+            ) },
+            { name: "", value: (
+                <span>Otros componentes utilizados: axios, reduxjs, react-router-dom, styled-components, eslint, vite.</span>
+            ) },
+            { name: "", value: (
+                <span>Enlace al <a href="https://github.com/kgomez95/react19-curso-tema16" target="_blank">Proyecto en Github</a> para ver el código de la aplicación.</span>
+            ) },
+        ]
+    ];
+
     return (
         <div>
-            <div>
-                <h2>Datos del usuario</h2>
-                <p><b>Nombre: </b>Anónimo</p>
-                <p><b>Apellidos: </b>Anónimo</p>
-                <p><b>Correo electrónico: </b>test@test.es</p>
-            </div>
-
-            <Divider />
-
-            <div>
-                <h2>Paleta de colores</h2>
-
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={currentTheme}
-                            onChange={handleTheme}
-                            name="theme"
-                        />
-                    }
-                    label={currentTheme ? "Oscuro" : "Azul"}
+            <Grid container spacing={2}>
+                <ItemGridDetails
+                    title="Tus datos"
+                    values={basicUserData}
+                    size={{ xs: 12, md: 12, lg: 7 }}
                 />
-            </div>
+                <ItemGridDetails
+                    title="Configuración"
+                    values={configData}
+                    size={{ xs: 12, md: 12, lg: 5 }}
+                />
+                <ItemGridDetails
+                    title="Información acerca de la página"
+                    values={infoData}
+                    size={{ xs: 12, md: 12, lg: 12 }}
+                />
+            </Grid>
         </div>
     );
 };

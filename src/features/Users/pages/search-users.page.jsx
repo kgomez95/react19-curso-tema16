@@ -18,7 +18,6 @@ const SearchUsers = () => {
     }, []);
 
     const clicOnDelete = (user) => {
-        console.log(user);
         setUser(user);
 
         openCancelPopup();
