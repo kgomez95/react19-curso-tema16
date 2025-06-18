@@ -30,7 +30,6 @@ const DataTableBody = ({
                             </StyledTableCell>
                         ))}
 
-                        {/* TODO: Hacer que las acciones funcionen. */}
                         {rowActions && (
                             <StyledTableCell>
                                 <Stack direction="row" spacing={2}>
@@ -63,7 +62,7 @@ const DataTableBody = ({
                                             <Button
                                                 title={rowAction.name}
                                                 key={index}
-                                                onClick={rowAction.onClick}
+                                                onClick={() => rowAction.onClick(row)}
                                             >
                                                 {rowAction.icon ? (
                                                     rowAction.icon
