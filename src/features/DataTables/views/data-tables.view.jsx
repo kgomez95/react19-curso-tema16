@@ -7,12 +7,13 @@ import { memo, useEffect, useState } from "react";
 import DataTableBody from "../components/data-table-body.component";
 import DataTablePagination from "../components/data-table-pagination.component";
 import DataTableFilters from "../components/data-table-filters.component";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 const DataTable = memo(({
     url = "",
     fieldsInfo = [{ name: "", key: [] }],
     filterSimple = { name: "", key: "", value: "" },
-    topActions = [{ name: "", icon: "", path: "" }],
+    topActions = [{ name: "", icon: undefined, onClick: undefined }],
     rowActions = [
         { name: "", icon: "", path: "", parameters: [], onClick: undefined },
     ],
@@ -69,7 +70,7 @@ const DataTable = memo(({
 
     return (
         <div>
-            <DataTableFilters name={filterSimple.name} filterValue={filterValue} changeFilterValue={changeFilterValue} />
+            <DataTableFilters name={filterSimple.name} filterValue={filterValue} changeFilterValue={changeFilterValue} topActions={topActions} />
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <DataTableHead headers={headers} />

@@ -20,7 +20,7 @@ const routes = [
     },
     {
         index: true,
-        loader: async () => redirect("/users"),
+        loader: async () => redirect("/profile"),
     },
 ];
 

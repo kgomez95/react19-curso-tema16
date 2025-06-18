@@ -38,8 +38,8 @@ const ProfilePage = () => {
         [
             { name: "Nombre", value: "Anónimo" },
             { name: "Apellidos", value: "Anónimo1 Anónimo2" },
-            { name: "Género", value: "Cosa" },
-            { name: "Edad", value: Math.floor(Math.random() * 100) + 18 },
+            { name: "Género", value: "Cos@" },
+            { name: "Edad", value: 65 },
         ],
         [
             { name: "Correo electrónico", value: "anonimo@test.es" },
@@ -85,10 +85,10 @@ const ProfilePage = () => {
         ],
     ];
 
-    const infoData = [
+    const aboutData = [
         [
             { name: "", value: (
-                <span>Esta es una página web de prueba, desarrollada con la finalidad de poner en práctica gran parte de lo aprendido en el curso <b>React 19</b> (<a href="https://imaginaformacion.com/" target="_blank">Imagina Formación</a>).</span>
+                <span>Esta es una aplicación web de prueba, desarrollada con la finalidad de poner en práctica gran parte de lo aprendido en el curso <b>React 19</b> (<a href="https://imaginaformacion.com/" target="_blank">Imagina Formación</a>).</span>
             ) },
             { name: "", value: (
                 <span>Se ha utilizado la fake API <a href="https://jsonplaceholder.typicode.com/" target="_blank">https://jsonplaceholder.typicode.com/</a> para poder obtener datos ficticios de cara a visualizarlo en las diferentes pantallas de la aplicación.</span>
@@ -108,6 +108,17 @@ const ProfilePage = () => {
         ]
     ];
 
+    const infoData = [
+        [
+            { name: "", value: (
+                <span>En la pantalla <b><i>Perfil</i></b> podemos visualizar datos del usuario identificado (que son datos fijos), y además, tenemos la posibilidad de cambiar en tiempo real dos configuraciones visuales de la propia página.</span>
+            ) },
+            { name: "", value: (
+                <span>En la pantalla <b><i>Usuarios</i></b> podemos realizar búsquedas por usuario, y sobre cada uno de ellos aparecerán tres acciones: ver, editar y eliminar. La acción <b>ver</b> abre una nueva página para mostrar la información detallada del usuario. La acción <b>editar</b> abre una nueva página para modificar la información del usuario. La acción <b>eliminar</b> muestra un mensaje preguntando si quieres eliminar o no el usuario.</span>
+            ) },
+        ]
+    ];
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -122,7 +133,12 @@ const ProfilePage = () => {
                     size={{ xs: 12, md: 12, lg: 5 }}
                 />
                 <ItemGridDetails
-                    title="Información acerca de la página"
+                    title="Información acerca de la aplicación"
+                    values={aboutData}
+                    size={{ xs: 12, md: 12, lg: 12 }}
+                />
+                <ItemGridDetails
+                    title="¿Qué podemos hacer en esta aplicación?"
                     values={infoData}
                     size={{ xs: 12, md: 12, lg: 12 }}
                 />
